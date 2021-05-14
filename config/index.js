@@ -19,6 +19,8 @@ const common = {
             extensions: ['.js', '.vue', '.json'],
             alias: {
                 '@': resolve(''),
+                '@api': resolve('api'),
+                '@models': resolve('models'),
                 '@stores': resolve('stores'),
                 '@assets': resolve('assets'),
                 '@router': resolve('router'),
