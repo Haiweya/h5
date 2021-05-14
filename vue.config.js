@@ -1,6 +1,12 @@
 console.log(process.env.NODE_ENV);
 const port = process.env.port || 9999;
 
+const path = require('path');
+
+function resolve(dir) {
+    return path.join(__dirname, dir);
+}
+
 module.exports = {
     // 是否在开发环境下通过 eslint-loader 在每次保存时 lint 代码 
     // (在生产构建时禁用 eslint-loader) 应该是!==,这里设置为===是为了不进行检查
@@ -18,6 +24,20 @@ module.exports = {
                     [process.env.VUE_APP_BASE_API]: ""
                 }
             }
+        }
+    },
+    configureWebpack: {
+        resolve: {
+            extensions: ['.js', '.vue', '.json'],
+            alias: {
+                '@': resolve(''),
+                '@api': resolve('api'),
+                '@models': resolve('models'),
+                '@stores': resolve('stores'),
+                '@assets': resolve('assets'),
+                '@router': resolve('router'),
+                '@pages': resolve('pages'),
+            },
         }
     }
 }
